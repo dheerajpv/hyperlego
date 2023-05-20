@@ -7,7 +7,7 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "prod": "yarn prisma generate && yarn prisma migrate && yarn build"
+        "prod": "yarn prisma generate && yarn prisma migrate deploy && yarn build"
     },
     "dependencies": {
         "@prisma/client": "^4.14.0",
