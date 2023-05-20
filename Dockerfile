@@ -5,7 +5,7 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-COPY yarn.lock ./
+COPY package.json yarn.lock ./
 RUN yarn --frozen-lockfile
 
 FROM base AS builder
@@ -14,6 +14,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+ENV NEXT_TELEMETRY_DISABLED 1
+
+RUN yarn prisma generate
 RUN yarn build
 
 FROM base AS runner
