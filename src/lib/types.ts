@@ -1,4 +1,6 @@
-import type { CirclePosition, ElevatorState, Table } from "@prisma/client";
+export type CirclePosition = "OUTSIDE" | "PARTIAL" | "COMPLETE";
+export type ElevatorState = "NEITHER" | "BLUE_CAR_DOWN" | "BALANCED";
+export type Table = "A1" | "B1" | "A2" | "B2";
 
 export interface Scoresheet {
     team: number;

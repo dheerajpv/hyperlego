@@ -3,8 +3,7 @@
 import BooleanField from "@/components/BooleanField";
 import RadioRange from "@/components/RadioRange";
 import { score } from "@/lib/calc-score";
-import { Scores } from "@/lib/types";
-import type { ElevatorState, CirclePosition, Table } from "@prisma/client";
+import { ElevatorState, CirclePosition, Table, Scores } from "@/lib/types";
 import { useMemo, useState } from "react";
 
 export default function ScorePage() {
@@ -121,41 +120,7 @@ export default function ScorePage() {
 
     return (
         <main>
-            <form
-                onSubmit={async (e) => {
-                    e.preventDefault();
-                    const res = await fetch("/api/score/register", {
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            advantage,
-                            batOnBranch,
-                            beamsKnockedOut,
-                            blueUnitInCircle: blueInCircle,
-                            colorMatchingCircles,
-                            blueUnitLowered: craneLowered,
-                            blueUnitSupported: blueSupported,
-                            droneOnAxle,
-                            elevator: elevatorPos,
-                            flagsRaised,
-                            heightSum,
-                            trafficJamLifted: jamLifted,
-                            swingReleased,
-                            steelStanding,
-                            structureInCircle,
-                            structureValid,
-                            supportedByBridge,
-                            testBuildingIndependent: testIndependent,
-                            precision: tokensLeft,
-                            unitsOnLargeBranch: unitsOnLarge,
-                            unitsOnSmallBranch: unitsOnSmall,
-                            upgrades,
-                        }),
-                    });
-                    if (res.ok) e.currentTarget.reset();
-                }}
-            >
+            <form>
                 <section className="flex flex-row justify-between">
                     <div className="max-w-[50%]">
                         <div className="grid grid-cols-2 p-2 m-2 border-black border">
@@ -557,12 +522,9 @@ export default function ScorePage() {
                                 />
                             </div>
                         </div>
-                        <button
-                            type="submit"
-                            className="bg-blue-400 hover:bg-blue-500 text-black transition-all p-2 m-2 rounded-md border-black border"
-                        >
-                            Submit
-                        </button>
+                        <h1>
+                            Total: <b>{totalScore}</b>
+                        </h1>
                     </div>
                 </section>
             </form>
